@@ -1,0 +1,68 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+<!--    <declare-styleable name="inputTextAppearance">-->
+<!--        <attr name="hintColor" format="color"/>-->
+<!--        <attr name="inputColor" format="color"/>-->
+<!--        <attr name="textSize" format="dimension"/>-->
+<!--    </declare-styleable>-->
+    <style name="inputTextAppearance">
+        <!-- Customize your theme here. -->
+        <item name="hintColor">@color/common_gray</item>
+        <item name="inputColor">@color/common_black</item>
+        <item name="input_marginLeft">0dp</item>
+        <item name="input_marginRight">10dp</item>
+        <item name="textSize">14sp</item>
+    </style>
+<!--    <declare-styleable name="titleTextAppearance">-->
+<!--        <attr name="titleColor" format="color"/>-->
+<!--        <attr name="titleSize" format="dimension"/>-->
+<!--        <attr name="minWidth" format="dimension"/>-->
+<!--    </declare-styleable>-->
+    <style name="titleTextAppearance">
+        <!-- Customize your theme here. -->
+        <item name="titleColor">@color/common_black</item>
+        <item name="titleSize">14sp</item>
+        <item name="title_marginLeft">2dp</item>
+        <item name="title_marginRight">10dp</item>
+        <item name="minWidth">100dp</item>
+    </style>
+<!--    <declare-styleable name="titleRequiredAppearance">-->
+<!--        <attr name="titleColor" format="color"/>-->
+<!--        <attr name="titleSize" format="dimension"/>-->
+<!--        <attr name="marginLeft2" format="dimension"/>-->
+<!--    </declare-styleable>-->
+    <style name="titleRequiredAppearance">
+        <!-- Customize your theme here. -->
+        <item name="titleRequiredColor">@color/common_red</item>
+        <item name="titleRequiredSize">14sp</item>
+        <item name="titleRequired_marginLeft">10dp</item>
+    </style>
+<!--    <declare-styleable name="lineAppearance">-->
+<!--        <attr name="color" format="color"/>-->
+<!--        <attr name="height" format="dimension"/>-->
+<!--        <attr name="leftMargin" format="dimension"/>-->
+<!--        <attr name="rightMargin" format="dimension"/>-->
+<!--        <attr name="enable" format="boolean"/>-->
+<!--    </declare-styleable>-->
+
+    <style name="lineAppearance">
+        <!-- Customize your theme here. -->
+        <item name="color">@color/colorPrimary</item>
+        <item name="height">1dp</item>
+        <item name="leftMargin">0dp</item>
+        <item name="rightMargin">0dp</item>
+        <item name="enable">true</item>
+    </style>
+
+    <style name="leftMargin_lineAppearance" parent="lineAppearance">
+        <!-- Customize your theme here. -->
+        <item name="leftMargin">10dp</item>
+    </style>
+</resources>
