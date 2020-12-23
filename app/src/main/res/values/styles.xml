@@ -42,6 +42,7 @@
         <!-- Customize your theme here. -->
         <item name="titleRequiredColor">@color/common_red</item>
         <item name="titleRequiredSize">14sp</item>
+        <item name="isRequired">false</item>
         <item name="titleRequired_marginLeft">10dp</item>
     </style>
 <!--    <declare-styleable name="lineAppearance">-->

@@ -6,19 +6,27 @@ import android.graphics.Canvas
 import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.drawable.ColorDrawable
+import android.text.Editable
 import android.text.InputType.*
+import android.text.TextUtils
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
+import android.view.View
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import com.liucj.liu_common.R
 
 
 open class InputItemLayout : LinearLayout {
     private lateinit var topLine: Line
     private lateinit var bottomLine: Line
+    private lateinit var editText: EditText
+    private lateinit var textView: TextView
+    private var isRequired: Boolean = false
 
     constructor(context: Context) : this(context, null)
     constructor(context: Context, attributeSet: AttributeSet?) : this(context, attributeSet, 0)
@@ -75,20 +83,31 @@ open class InputItemLayout : LinearLayout {
             R.styleable.titleRequiredAppearance_titleRequiredColor,
             resources.getColor(R.color.common_black)
         )
+        isRequired = array.getBoolean(
+            R.styleable.titleRequiredAppearance_isRequired,
+            false
+        )
         var titleSize: Int = array.getDimensionPixelSize(
             R.styleable.titleRequiredAppearance_titleRequiredSize,
             applyUnit(TypedValue.COMPLEX_UNIT_SP, 14f)
         )
-        var leftMargin = array.getDimensionPixelOffset(R.styleable.titleRequiredAppearance_titleRequired_marginLeft, 0)
+        var leftMargin = array.getDimensionPixelOffset(
+            R.styleable.titleRequiredAppearance_titleRequired_marginLeft,
+            0
+        )
 
-        val textView = TextView(context)
+        textView = TextView(context)
         val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
-        params.setMargins(leftMargin,0,0,0)
+        params.setMargins(leftMargin, 0, 0, 0)
         textView.layoutParams = params
-        textView.text = "*"
+        if (isRequired) {
+            textView.text = "*"
+        } else {
+            textView.text = ""
+        }
         textView.setTextColor(titleColor)
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize.toFloat())
-        textView.gravity =Gravity.CENTER_VERTICAL
+        textView.gravity = Gravity.CENTER_VERTICAL
         addView(textView)
         array.recycle()
     }
@@ -104,20 +123,22 @@ open class InputItemLayout : LinearLayout {
             R.styleable.titleTextAppearance_titleSize,
             applyUnit(TypedValue.COMPLEX_UNIT_SP, 14f)
         )
-        var leftMargin = array.getDimensionPixelOffset(R.styleable.titleTextAppearance_title_marginLeft, 0)
-        var rightMargin = array.getDimensionPixelOffset(R.styleable.titleTextAppearance_title_marginRight, 0)
+        var leftMargin =
+            array.getDimensionPixelOffset(R.styleable.titleTextAppearance_title_marginLeft, 0)
+        var rightMargin =
+            array.getDimensionPixelOffset(R.styleable.titleTextAppearance_title_marginRight, 0)
 
 
         var minWidth: Int = array.getDimensionPixelSize(R.styleable.titleTextAppearance_minWidth, 0)
         val textView = TextView(context)
         val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
-        params.setMargins(leftMargin,0,rightMargin,0)
+        params.setMargins(leftMargin, 0, rightMargin, 0)
         textView.layoutParams = params
         textView.minWidth = minWidth
         textView.text = title
         textView.setTextColor(titleColor)
         textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, titleSize.toFloat())
-        textView.gravity =Gravity.CENTER_VERTICAL
+        textView.gravity = Gravity.CENTER_VERTICAL
         addView(textView)
         array.recycle()
 
@@ -138,19 +159,41 @@ open class InputItemLayout : LinearLayout {
             R.styleable.inputTextAppearance_textSize,
             applyUnit(TypedValue.COMPLEX_UNIT_SP, 14f)
         )
-        var leftMargin = array.getDimensionPixelOffset(R.styleable.inputTextAppearance_input_marginLeft, 0)
-        var rightMargin = array.getDimensionPixelOffset(R.styleable.inputTextAppearance_input_marginRight, 0)
+        var leftMargin =
+            array.getDimensionPixelOffset(R.styleable.inputTextAppearance_input_marginLeft, 0)
+        var rightMargin =
+            array.getDimensionPixelOffset(R.styleable.inputTextAppearance_input_marginRight, 0)
 
-        val editText = EditText(context)
+        editText = EditText(context)
         val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT)
         params.weight = 1f
-        params.setMargins(leftMargin,0,rightMargin,0)
+        params.setMargins(leftMargin, 0, rightMargin, 0)
         editText.layoutParams = params
         editText.hint = hint
         editText.setHintTextColor(hintColor)
         editText.setTextColor(inputColor)
         editText.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize.toFloat())
+        editText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(
+                s: CharSequence,
+                start: Int,
+                count: Int,
+                after: Int
+            ) {
+            }
 
+            override fun onTextChanged(
+                s: CharSequence,
+                start: Int,
+                before: Int,
+                count: Int
+            ) {
+            }
+
+            override fun afterTextChanged(s: Editable) {
+                //s--最终内容
+            }
+        })
         editText.setBackgroundColor(Color.TRANSPARENT)//去掉背景
         editText.gravity = Gravity.RIGHT or Gravity.CENTER_VERTICAL
 
@@ -171,6 +214,15 @@ open class InputItemLayout : LinearLayout {
         array.recycle()
     }
 
+    open fun requiredText(): String {
+        if (isRequired) {
+            if (TextUtils.isEmpty(editText.text.toString())) {
+                Toast.makeText(context, "请输入" + textView.text, Toast.LENGTH_SHORT).show()
+                return ""
+            }
+        }
+        return editText.text.toString()
+    }
 
     private fun parseLineStyle(resId: Int): Line {
         var line = Line()
@@ -211,9 +263,9 @@ open class InputItemLayout : LinearLayout {
         if (bottomLine.enable) {
             canvas!!.drawLine(
                 bottomLine.leftMargin.toFloat(),
-                (height-bottomLine.height).toFloat(),
+                (height - bottomLine.height).toFloat(),
                 (measuredWidth - bottomLine.rightMargin).toFloat(),
-                (height-bottomLine.height).toFloat(),
+                (height - bottomLine.height).toFloat(),
                 bottomPaint
             )
         }
