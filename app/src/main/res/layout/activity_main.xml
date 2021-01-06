@@ -4,22 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".MainActivity">
-    <com.liucj.liu_common.view.InputItemLayout
+    android:orientation="vertical">
+    <com.liucj.lib_picture_selector.PictureView
+        android:id="@+id/mPictureView"
         android:layout_width="match_parent"
-        app:title="用户名"
-        app:hint="请输入用户名"
-        app:inputType="password"
-        app:titleRequiredAppearance="@style/titleRequiredAppearance"
-        app:inputTextAppearance="@style/inputTextAppearance"
-        app:titleTextAppearance="@style/titleTextAppearance"
-        app:bottomLineAppearance="@style/leftMargin_lineAppearance"
-        android:layout_height="56dp"/>
-
-    <com.liucj.liu_ui.tab.bottom.LiuTabBottom
-        android:id="@+id/mLiuTabBottom"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"/>
+        android:layout_height="100dp"/>
 
 </LinearLayout>

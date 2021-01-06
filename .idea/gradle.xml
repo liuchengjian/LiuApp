@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/lib_picture_selector" />
             <option value="$PROJECT_DIR$/liu-common" />
             <option value="$PROJECT_DIR$/liu-library" />
             <option value="$PROJECT_DIR$/liu-ui" />
