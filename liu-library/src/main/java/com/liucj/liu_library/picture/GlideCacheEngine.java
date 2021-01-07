@@ -1,4 +1,4 @@
-package com.liucj.lib_picture_selector;
+package com.liucj.liu_library.picture;
 
 import android.content.Context;
 

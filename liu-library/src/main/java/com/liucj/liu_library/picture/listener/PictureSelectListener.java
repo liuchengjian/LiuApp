@@ -1,8 +1,4 @@
-package com.liucj.lib_picture_selector.listener;
-
-import android.view.View;
-
-import androidx.recyclerview.widget.RecyclerView;
+package com.liucj.liu_library.picture.listener;
 
 import com.luck.picture.lib.entity.LocalMedia;
 

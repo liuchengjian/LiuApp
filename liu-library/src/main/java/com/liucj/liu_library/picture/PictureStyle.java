@@ -1,10 +1,11 @@
-package com.liucj.lib_picture_selector;
+package com.liucj.liu_library.picture;
 
 import android.content.Context;
 import android.graphics.Color;
 
 import androidx.core.content.ContextCompat;
 
+import com.liucj.liu_library.R;
 import com.luck.picture.lib.style.PictureCropParameterStyle;
 import com.luck.picture.lib.style.PictureParameterStyle;
 
@@ -91,7 +92,7 @@ public class PictureStyle {
      * @param context
      * @return
      */
-    public static PictureParameterStyle getCustomParameterStyle(Context context,boolean isChangeStatusBarFontColor,boolean isOpenCompletedNumStyle,boolean isOpenCheckNumStyle,String color) {
+    public static PictureParameterStyle getCustomParameterStyle(Context context,boolean isChangeStatusBarFontColor,boolean isOpenCompletedNumStyle,boolean isOpenCheckNumStyle,boolean pictureExternalPreviewGonePreviewDelete,String color) {
         // 相册主题
         PictureParameterStyle mPictureParameterStyle = new PictureParameterStyle();
         // 是否改变状态栏字体颜色(黑白切换)
@@ -119,15 +120,15 @@ public class PictureStyle {
         // 相册列表勾选图片样式
         mPictureParameterStyle.pictureCheckedStyle = R.drawable.picture_checkbox_selector;
         // 相册列表底部背景色
-        mPictureParameterStyle.pictureBottomBgColor = ContextCompat.getColor(context, R.color.picture_color_grey);
+        mPictureParameterStyle.pictureBottomBgColor = ColorUtil.hex2Int(color);
         // 已选数量圆点背景样式
         mPictureParameterStyle.pictureCheckNumBgStyle = R.drawable.picture_num_oval;
         // 相册列表底下预览文字色值(预览按钮可点击时的色值)
-        mPictureParameterStyle.picturePreviewTextColor = ContextCompat.getColor(context, R.color.picture_color_fa632d);
+        mPictureParameterStyle.picturePreviewTextColor = ContextCompat.getColor(context, R.color.picture_color_white);
         // 相册列表底下不可预览文字色值(预览按钮不可点击时的色值)
         mPictureParameterStyle.pictureUnPreviewTextColor = ContextCompat.getColor(context, R.color.picture_color_white);
         // 相册列表已完成色值(已完成 可点击色值)
-        mPictureParameterStyle.pictureCompleteTextColor = ContextCompat.getColor(context, R.color.picture_color_fa632d);
+        mPictureParameterStyle.pictureCompleteTextColor = ContextCompat.getColor(context, R.color.picture_color_white);
         // 相册列表未完成色值(请选择 不可点击色值)
         mPictureParameterStyle.pictureUnCompleteTextColor = ContextCompat.getColor(context, R.color.picture_color_white);
         // 预览界面底部背景色
@@ -139,9 +140,9 @@ public class PictureStyle {
         // 原图文字颜色 需设置.isOriginalImageControl(true); 才有效
         mPictureParameterStyle.pictureOriginalFontColor = ContextCompat.getColor(context, R.color.app_color_white);
         // 外部预览界面是否显示删除按钮
-        mPictureParameterStyle.pictureExternalPreviewGonePreviewDelete = true;
+        mPictureParameterStyle.pictureExternalPreviewGonePreviewDelete = pictureExternalPreviewGonePreviewDelete;
         // 设置NavBar Color SDK Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP有效
-        mPictureParameterStyle.pictureNavBarColor = Color.parseColor("#393a3e");
+        mPictureParameterStyle.pictureNavBarColor = Color.parseColor(color);
 //        // 自定义相册右侧文本内容设置
 //        mPictureParameterStyle.pictureRightDefaultText = "";
 //        // 自定义相册未完成文本内容
@@ -167,7 +168,7 @@ public class PictureStyle {
         return mPictureParameterStyle;
     }
 
-    private static PictureParameterStyle getWhiteStyle(Context context) {
+    public static PictureParameterStyle getWhiteStyle(Context context) {
         // 相册主题
         PictureParameterStyle mPictureParameterStyle = new PictureParameterStyle();
         // 是否改变状态栏字体颜色(黑白切换)

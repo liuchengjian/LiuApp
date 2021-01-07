@@ -1,4 +1,4 @@
-package com.liucj.lib_picture_selector.listener;
+package com.liucj.liu_library.picture.listener;
 
 import android.view.View;
 

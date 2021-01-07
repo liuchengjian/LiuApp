@@ -5,9 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <com.liucj.lib_picture_selector.PictureView
+    <com.liucj.liu_library.picture.PictureSelectView
         android:id="@+id/mPictureView"
         android:layout_width="match_parent"
-        android:layout_height="100dp"/>
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>

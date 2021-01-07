@@ -1,10 +1,11 @@
-package com.liucj.lib_picture_selector;
+package com.liucj.liu_library.picture;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FullyGridLayoutManager extends GridLayoutManager {
@@ -35,7 +36,7 @@ public class FullyGridLayoutManager extends GridLayoutManager {
                     View.MeasureSpec.makeMeasureSpec(i, View.MeasureSpec.UNSPECIFIED),
                     mMeasuredDimension);
 
-            if (getOrientation() == HORIZONTAL) {
+            if (getOrientation() == LinearLayoutManager.HORIZONTAL) {
                 if (i % span == 0) {
                     width = width + mMeasuredDimension[0];
                 }

@@ -1,4 +1,3 @@
-include ':lib_picture_selector'
 include ':liu-library'
 include ':liu-common'
 include ':liu-ui'

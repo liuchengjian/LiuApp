@@ -1,4 +1,4 @@
-package com.liucj.lib_picture_selector.adapter;
+package com.liucj.liu_library.picture.adapter;
 
 import android.content.Context;
 import android.net.Uri;
@@ -14,9 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.liucj.lib_picture_selector.R;
-import com.liucj.lib_picture_selector.listener.OnItemLongClickListener;
-import com.liucj.lib_picture_selector.listener.PictureSelectListener;
+import com.liucj.liu_library.R;
+import com.liucj.liu_library.picture.listener.OnItemLongClickListener;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.luck.picture.lib.listener.OnItemClickListener;
@@ -34,6 +33,7 @@ public class GridImageAdapter extends
     private LayoutInflater mInflater;
     private List<LocalMedia> list = new ArrayList<>();
     private int selectMax = 9;
+    private boolean isShowTopDel = true;
     /**
      * 点击添加图片跳转
      */
@@ -62,6 +62,12 @@ public class GridImageAdapter extends
     public GridImageAdapter(Context context, onAddPicClickListener mOnAddPicClickListener) {
         this.mInflater = LayoutInflater.from(context);
         this.mOnAddPicClickListener = mOnAddPicClickListener;
+    }
+
+    public GridImageAdapter(Context context, onAddPicClickListener mOnAddPicClickListener, boolean isShowTopDel) {
+        this.mInflater = LayoutInflater.from(context);
+        this.mOnAddPicClickListener = mOnAddPicClickListener;
+        this.isShowTopDel = isShowTopDel;
     }
 
     public void setSelectMax(int selectMax) {
@@ -135,11 +141,11 @@ public class GridImageAdapter extends
     public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
         //少于8张，显示继续添加的图标
         if (getItemViewType(position) == TYPE_CAMERA) {
-            viewHolder.mImg.setImageResource(R.drawable.icon_add_img);
+            viewHolder.mImg.setImageResource(R.drawable.ic_add_image);
             viewHolder.mImg.setOnClickListener(v -> mOnAddPicClickListener.onAddPicClick());
             viewHolder.mIvDel.setVisibility(View.INVISIBLE);
         } else {
-            viewHolder.mIvDel.setVisibility(View.VISIBLE);
+            viewHolder.mIvDel.setVisibility(isShowTopDel ? View.VISIBLE : View.INVISIBLE);
             viewHolder.mIvDel.setOnClickListener(view -> {
                 int index = viewHolder.getAdapterPosition();
                 // 这里有时会返回-1造成数据下标越界,具体可参考getAdapterPosition()源码，
@@ -234,6 +240,7 @@ public class GridImageAdapter extends
     }
 
     private OnItemLongClickListener mItemLongClickListener;
+
     public void setItemLongClickListener(OnItemLongClickListener l) {
         this.mItemLongClickListener = l;
     }
