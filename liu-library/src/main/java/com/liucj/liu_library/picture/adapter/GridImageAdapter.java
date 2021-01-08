@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.liucj.liu_library.R;
+import com.liucj.liu_library.picture.listener.OnClickDelListener;
 import com.liucj.liu_library.picture.listener.OnItemLongClickListener;
 import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
@@ -53,6 +54,9 @@ public class GridImageAdapter extends
                 list.remove(position);
                 notifyItemRemoved(position);
                 notifyItemRangeChanged(position, list.size());
+                if (mOnClickDelListener != null) {
+                    mOnClickDelListener.OnClickDel(list, position);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -85,6 +89,9 @@ public class GridImageAdapter extends
     public void remove(int position) {
         if (list != null && position < list.size()) {
             list.remove(position);
+            if (mOnClickDelListener != null) {
+                mOnClickDelListener.OnClickDel(list, position);
+            }
         }
     }
 
@@ -154,6 +161,9 @@ public class GridImageAdapter extends
                     list.remove(index);
                     notifyItemRemoved(index);
                     notifyItemRangeChanged(index, list.size());
+                }
+                if (mOnClickDelListener != null) {
+                    mOnClickDelListener.OnClickDel(list, index);
                 }
             });
             LocalMedia media = list.get(position);
@@ -243,5 +253,11 @@ public class GridImageAdapter extends
 
     public void setItemLongClickListener(OnItemLongClickListener l) {
         this.mItemLongClickListener = l;
+    }
+
+    private OnClickDelListener mOnClickDelListener;
+
+    public void setOnClickDelListener(OnClickDelListener l) {
+        this.mOnClickDelListener = l;
     }
 }

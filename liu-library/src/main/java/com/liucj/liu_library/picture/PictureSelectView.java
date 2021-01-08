@@ -29,6 +29,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.liucj.liu_library.R;
 import com.liucj.liu_library.picture.adapter.GridImageAdapter;
 import com.liucj.liu_library.picture.listener.DragListener;
+import com.liucj.liu_library.picture.listener.OnClickDelListener;
 import com.liucj.liu_library.picture.listener.PictureSelectListener;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.broadcast.BroadcastAction;
@@ -165,7 +166,14 @@ public class PictureSelectView extends LinearLayout {
                 }
             }
         });
-
+        mAdapter.setOnClickDelListener(new OnClickDelListener() {
+            @Override
+            public void OnClickDel(List<LocalMedia> list, int position) {
+                if (mPictureSelectListener != null) {
+                    mPictureSelectListener.pictureSelect(list);
+                }
+            }
+        });
         mAdapter.setItemLongClickListener((holder, position, v) -> {
             //如果item不是最后一个，则执行拖拽
             needScaleBig = true;
@@ -983,7 +991,7 @@ public class PictureSelectView extends LinearLayout {
                 Bundle extras = intent.getExtras();
                 if (extras != null) {
                     int position = extras.getInt(PictureConfig.EXTRA_PREVIEW_DELETE_POSITION);
-                    ToastUtils.s(context, "delete image index:" + position);
+//                    ToastUtils.s(context, "delete image index:" + position);
                     mAdapter.remove(position);
                     mAdapter.notifyItemRemoved(position);
                 }

@@ -19,8 +19,8 @@ class MainActivity : AppCompatActivity() {
         mPictureView.setNoOnlyCamera(false)
         mPictureView.setMaxSelectNum(16)
         mPictureView.setWeChatStyle(false)
-        mPictureView.setShowTopDel(false)
-        mPictureView.setShowTouchDel(false)
+        mPictureView.setShowTopDel(true)
+        mPictureView.setShowTouchDel(true)
         mPictureView.setPictureParameterStyle("custom","#2f54ed")
         mPictureView.init()
         mPictureView.setPictureSelectListener { selectList ->
