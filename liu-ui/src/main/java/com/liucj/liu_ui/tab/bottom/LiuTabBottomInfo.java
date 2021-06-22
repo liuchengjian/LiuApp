@@ -1,7 +1,6 @@
 package com.liucj.liu_ui.tab.bottom;
 
 import android.graphics.Bitmap;
-import android.graphics.Color;
 
 import androidx.fragment.app.Fragment;
 

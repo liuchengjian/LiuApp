@@ -563,15 +563,15 @@ public class PictureSelectView extends LinearLayout {
                         mPictureSelectListener.pictureSelect(selectList);
                     }
                     for (LocalMedia media : selectList) {
-                        Log.i(TAG, "是否压缩:" + media.isCompressed());
-                        Log.i(TAG, "压缩:" + media.getCompressPath());
-                        Log.i(TAG, "原图:" + media.getPath());
-                        Log.i(TAG, "绝对路径:" + media.getRealPath());
-                        Log.i(TAG, "是否裁剪:" + media.isCut());
-                        Log.i(TAG, "裁剪:" + media.getCutPath());
-                        Log.i(TAG, "是否开启原图:" + media.isOriginal());
-                        Log.i(TAG, "原图路径:" + media.getOriginalPath());
-                        Log.i(TAG, "Android Q 特有Path:" + media.getAndroidQToPath());
+                        Log.i(TAG, "Activity回调__是否压缩:" + media.isCompressed());
+                        Log.i(TAG, "Activity回调__压缩:" + media.getCompressPath());
+                        Log.i(TAG, "Activity回调__原图:" + media.getPath());
+                        Log.i(TAG, "Activity回调__绝对路径:" + media.getRealPath());
+                        Log.i(TAG, "Activity回调__是否裁剪:" + media.isCut());
+                        Log.i(TAG, "Activity回调__裁剪:" + media.getCutPath());
+                        Log.i(TAG, "Activity回调__是否开启原图:" + media.isOriginal());
+                        Log.i(TAG, "Activity回调__原图路径:" + media.getOriginalPath());
+                        Log.i(TAG, "Activity回调__Android Q 特有Path:" + media.getAndroidQToPath());
 
                     }
                     mAdapter.setList(selectList);

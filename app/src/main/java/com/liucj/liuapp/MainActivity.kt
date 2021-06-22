@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
         mPictureView.setWeChatStyle(false)
         mPictureView.setShowTopDel(true)
         mPictureView.setShowTouchDel(true)
+        mPictureView.setCompress(true)
         mPictureView.setPictureParameterStyle("custom","#2f54ed")
         mPictureView.init()
         mPictureView.setPictureSelectListener { selectList ->
@@ -50,5 +51,6 @@ class MainActivity : AppCompatActivity() {
     override fun onDestroy() {
         super.onDestroy()
         mPictureView.onDestroy()
+        mPictureView.clearCache()
     }
 }
